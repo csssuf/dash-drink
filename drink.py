@@ -10,12 +10,10 @@ api_key_table = dynamodb.Table('DrinkUsers')
 
 def drink_api_call(path, api_key, post=False, postdata=None):
     _req_call = requests.post if post else requests.get
-    print(path)
     req = _req_call(
         DRINK_API_BASE % (path, api_key),
         data=(postdata if post else None)
     )
-    print(req.request.url)
     return req.text
 
 def main(event, context):
